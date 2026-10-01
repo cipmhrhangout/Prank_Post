@@ -192,6 +192,23 @@
   /* Heading font for the call-to-action */
   .cta h2, .btn { font-family: "Plus Jakarta Sans", var(--display); font-weight: 800; }
   .btn { letter-spacing: -.2px; }
+  /* ---------- Button animation ---------- */
+  .btn {
+    position: relative;
+    background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.38) 50%, transparent 65%) no-repeat, var(--red);
+    background-size: 250% 100%; background-position: 160% 0;
+    animation: btnshine 3s ease-in-out 1s infinite;
+  }
+  .btn::after {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 0; border-radius: 16px; pointer-events: none;
+    animation: btnring 2s ease-out infinite;
+  }
+  .seat { animation: seat 2s ease-in-out infinite; }
+  @keyframes btnshine { 0% { background-position: 160% 0; } 45%, 100% { background-position: -60% 0; } }
+  @keyframes btnring { 0% { box-shadow: 0 0 0 0 rgba(227,38,46,.55); } 80%, 100% { box-shadow: 0 0 0 14px rgba(227,38,46,0); } }
+  @keyframes seat { 0%, 60%, 100% { transform: none; } 70% { transform: translateY(-4px) rotate(-12deg); } 80% { transform: translateY(0) rotate(10deg); } 90% { transform: rotate(-5deg); } }
+  @media (prefers-reduced-motion: reduce) { .btn, .btn::after, .seat { animation: none; } }
+  .cta .btn { margin-top: 14px; }
 </style>
 </head>
 <body>
@@ -252,8 +269,7 @@
     <div class="wrap">
       <h2>No Wi-Fi? No problem. <span class="e beat">💙</span><span class="e beat b2">❤️</span></h2>
       <p>Get <b>real connection</b> instead. Good coffee <span class="e bob">☕</span>, great people <span class="e wave">🙌</span>, <b>zero buffering.</b></p>
-      <div class="pointers" aria-hidden="true"><span>👇</span><span>👇</span><span>👇</span></div>
-      <a class="btn" href="https://cipm-hr-hangout-registration.vercel.app/">Save Your Seat</a>
+      <a class="btn" href="https://cipm-hr-hangout-registration.vercel.app/">Save my seat <span class="e seat">💺</span></a>
     </div>
   </section>
 </main>
